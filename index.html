@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#153e75">
+  <title>อาชีพคุณ รู้จริงป่ะ — แพทย์</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --blue: #153e75;
+      --accent: #2563eb;
+      --bg: #eef3f9;
+      --text: #17263b;
+      --muted: #526175;
+      --line: #d6dfeb;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+      line-height: 1.7;
+    }
+    main { max-width: 780px; margin: auto; padding: 24px 16px 50px; }
+    header { margin-bottom: 20px; }
+    h1 { font-size: clamp(1.65rem, 5vw, 2.25rem); margin: 8px 0; }
+    h2 { font-size: 1.3rem; line-height: 1.6; margin-top: 0; }
+    h3 { font-size: 1.05rem; }
+    p { margin: 10px 0; }
+    .tag {
+      display: inline-block;
+      background: #dce9ff;
+      color: var(--blue);
+      padding: 4px 12px;
+      border-radius: 30px;
+      font-weight: 700;
+    }
+    .card {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: clamp(18px, 4vw, 30px);
+      box-shadow: 0 8px 25px #19385609;
+      margin-bottom: 16px;
+    }
+    .muted { color: var(--muted); }
+    .notice {
+      background: #fff8e8;
+      border-left: 4px solid #b77900;
+      border-radius: 6px;
+      padding: 12px 14px;
+      font-size: .95rem;
+    }
+    button {
+      font: inherit;
+      font-weight: 700;
+      border: 0;
+      border-radius: 12px;
+      padding: 12px 20px;
+      cursor: pointer;
+      background: var(--accent);
+      color: white;
+      min-height: 48px;
+    }
+    button:hover:not(:disabled) { filter: brightness(.94); }
+    button:disabled { opacity: .5; cursor: not-allowed; }
+    button.secondary { background: #e8eef7; color: var(--blue); }
+    :focus-visible { outline: 3px solid #b45309; outline-offset: 4px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+    .actions button { flex: 1 1 180px; }
+    .meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    progress {
+      width: 100%;
+      height: 12px;
+      accent-color: var(--accent);
+      margin-bottom: 20px;
+    }
+    fieldset { margin: 0; padding: 0; border: 0; min-width: 0; }
+    legend {
+      width: 100%;
+      padding: 0;
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+    .option {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 14px;
+      border: 2px solid var(--line);
+      border-radius: 12px;
+      margin-bottom: 10px;
+      cursor: pointer;
+    }
+    .option:hover { background: #f7faff; }
+    .option.selected { background: #edf4ff; border-color: var(--accent); }
+    .option input {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      margin-top: 5px;
+      accent-color: var(--accent);
+    }
+    .score { font-size: 3.8rem; font-weight: 850; color: var(--blue); line-height: 1.3; }
+    .center { text-align: center; }
+    .result-level { font-size: 1.5rem; margin: 8px 0; }
+    .review-item { border-top: 1px solid var(--line); padding: 18px 0; }
+    .review-item h3 { margin: 0 0 8px; }
+    .correct { color: #166534; font-weight: 700; }
+    .incorrect { color: #a42621; font-weight: 700; }
+    .table-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; font-size: .95rem; }
+    th, td { text-align: left; padding: 10px; border-bottom: 1px solid var(--line); }
+    textarea {
+      width: 100%;
+      min-height: 170px;
+      font: inherit;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+    }
+    details summary { cursor: pointer; font-weight: 700; }
+    footer { font-size: .85rem; color: var(--muted); text-align: center; }
+    [hidden] { display: none !important; }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <span class="tag">แพทย์ · ชุดพื้นฐาน MED-B01</span>
+    <h1>อาชีพคุณ รู้จริงป่ะ</h1>
+    <p class="muted">10 คำถาม ท้าทายความรู้ทางการแพทย์พื้นฐาน</p>
+  </header>
+
+  <section id="start" class="card" aria-labelledby="start-title">
+    <h2 id="start-title">ลองดูว่าคุณจับหลักได้ดีแค่ไหน</h2>
+    <p>หัวข้อ: ความปลอดภัยของผู้ป่วย การป้องกันการติดเชื้อ
+      และการประเมินภาวะฉุกเฉิน</p>
+    <ul>
+      <li>10 ข้อ ข้อละ 10 คะแนน รวม 100 คะแนน</li>
+      <li>เลือกคำตอบที่ดีที่สุดเพียงข้อเดียว</li>
+      <li>ไม่จับเวลา และไม่มีคะแนนความเร็ว</li>
+      <li>เมื่อยืนยันแล้วจะย้อนกลับไปแก้คำตอบไม่ได้</li>
+      <li>ดูคะแนนและเฉลยได้หลังตอบครบทุกข้อ</li>
+    </ul>
+    <div class="notice">
+      เป็นเกมความรู้จากโจทย์จำกัด ไม่ยืนยันอาชีพ ใบอนุญาต
+      หรือความสามารถในการดูแลผู้ป่วยจริง และไม่ใช่คำแนะนำ
+      สำหรับรักษาผู้ป่วยเฉพาะราย
+    </div>
+    <p class="muted">
+      หากต้องการท้าทายตนเอง ลองตอบโดยไม่ค้นคว้าระหว่างเล่น
+      แต่เกมนี้ไม่สามารถตรวจสอบการใช้ AI หรือตัวช่วยได้
+    </p>
+    <button id="start-btn" type="button">เริ่มเล่น 10 ข้อ</button>
+  </section>
+
+  <section id="quiz" class="card" hidden aria-label="แบบทดสอบ">
+    <div class="meta">
+      <span id="question-count"></span>
+      <span id="category"></span>
+    </div>
+    <progress id="progress" max="10" value="0"
+      aria-label="จำนวนข้อที่ตอบแล้ว"></progress>
+    <form id="answer-form">
+      <fieldset>
+        <legend id="question-text" tabindex="-1"></legend>
+        <div id="options"></div>
+      </fieldset>
+      <p class="muted">เลือกคำตอบ แล้วกดยืนยันเพื่อไปต่อ</p>
+      <button id="confirm-btn" type="submit" disabled>ยืนยันคำตอบ</button>
+    </form>
+  </section>
+
+  <section id="result" hidden aria-labelledby="result-title">
+    <div class="card">
+      <div class="center">
+        <h2 id="result-title" tabindex="-1">ผลการท้าทายของคุณ</h2>
+        <div id="score" class="score"></div>
+        <h3 id="level" class="result-level"></h3>
+        <p id="level-description"></p>
+        <p id="attempt-info" class="muted"></p>
+      </div>
+      <p id="safety-note" class="notice" hidden></p>
+      <p class="muted">
+        คะแนนสะท้อนคำตอบในชุดนี้เท่านั้น
+        ไม่ใช่การรับรองอาชีพหรือสมรรถนะวิชาชีพ
+      </p>
+      <div class="actions">
+        <button id="share-btn" type="button">แชร์ผลและชวนเพื่อนเล่น</button>
+        <button id="copy-btn" class="secondary" type="button">คัดลอกผล</button>
+      </div>
+      <p id="share-status" role="status"></p>
+      <div id="copy-fallback" hidden>
+        <label for="share-text">คัดลอกข้อความด้านล่างด้วยตนเอง</label>
+        <textarea id="share-text" readonly></textarea>
+      </div>
+      <div class="actions">
+        <button id="review-btn" class="secondary" type="button"
+          aria-expanded="false" aria-controls="review">
+          ดูเฉลยพร้อมเหตุผล
+        </button>
+        <button id="restart-btn" class="secondary" type="button">
+          เล่นใหม่เพื่อทบทวน
+        </button>
+      </div>
+    </div>
+
+    <section id="review" class="card" hidden aria-labelledby="review-title">
+      <h2 id="review-title" tabindex="-1">เฉลยพร้อมเหตุผล</h2>
+      <div id="review-content"></div>
+      <p class="notice">
+        ข้อมูลนี้สรุปเพื่อการเรียนรู้ ไม่ครอบคลุมการดูแลทั้งหมด
+        การปฏิบัติจริงต้องอ้างอิงแนวทางที่เป็นปัจจุบัน
+        บริบทผู้ป่วย และระบบบริการของสถานพยาบาล
+      </p>
+    </section>
+  </section>
+
+  <details class="card">
+    <summary>สเกลคะแนนและข้อจำกัด</summary>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th scope="col">คะแนน</th><th scope="col">ระดับในเกม</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>0–30</td><td>เปิดแผนที่ความรู้</td></tr>
+          <tr><td>40–50</td><td>มีพื้นฐานให้ต่อยอด</td></tr>
+          <tr><td>60–70</td><td>จับหลักได้ดี</td></tr>
+          <tr><td>80–90</td><td>รู้จริงหลายมุม</td></tr>
+          <tr><td>100</td><td>รอบรู้ประจำชุด</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted">
+      เกณฑ์นี้ออกแบบเพื่อเกม ไม่ใช่มาตรฐานวิชาชีพ
+      ชุดคำถามมีหัวข้อซ้ำบางส่วนและยังไม่ได้ผ่านการตรวจสอบ
+      คุณภาพข้อสอบ จึงไม่เหมาะสำหรับคัดเลือกบุคลากร
+      หรือประเมินความพร้อมในการรักษาผู้ป่วย
+    </p>
+  </details>
+
+  <footer>
+    ไม่ขอชื่อ เลขใบอนุญาต หรือข้อมูลผู้ป่วย<br>
+    ตัวเกมเก็บเพียงจำนวนครั้งที่เล่นจบในเบราว์เซอร์นี้
+    หากเบราว์เซอร์อนุญาต ไม่ส่งคำตอบหรือคะแนนไปยังเซิร์ฟเวอร์<br>
+    จำนวนครั้งที่เล่นและคะแนนไม่ใช่ข้อมูลที่ยืนยันป้องกันการแก้ไขได้
+  </footer>
+  <noscript>โปรดเปิดใช้งาน JavaScript เพื่อเล่นเกมนี้</noscript>
+</main>
+
+<script>
+"use strict";
+
+const questions = [
+  {
+    title: "ต้องใช้มาตรการป้องกันกับใคร?",
+    category: "พื้นฐาน",
+    text: "หลัก Standard Precautions หรือมาตรการป้องกันการติดเชื้อมาตรฐาน ควรใช้กับผู้ป่วยกลุ่มใด?",
+    options: [
+      "เฉพาะผู้ป่วยที่ยืนยันแล้วว่ามีโรคติดต่อ",
+      "ผู้ป่วยทุกราย โดยเลือกมาตรการและอุปกรณ์ให้เหมาะกับความเสี่ยงของกิจกรรม",
+      "เฉพาะผู้ป่วยที่มีไข้หรือไอ",
+      "เฉพาะผู้ป่วยในโรงพยาบาล ไม่รวมผู้ป่วยนอก"
+    ],
+    answer: 1,
+    explanation: "Standard Precautions ใช้กับผู้ป่วยทุกราย โดยเลือกอุปกรณ์และมาตรการตามความเสี่ยงของกิจกรรม ไม่จำเป็นต้องใช้อุปกรณ์เหมือนกันทุกสถานการณ์"
+  },
+  {
+    title: "ถุงมือแทนการทำความสะอาดมือได้หรือไม่?",
+    category: "พื้นฐาน",
+    text: "หลังตรวจผู้ป่วยโดยสวมถุงมือและถอดถุงมือแล้ว การปฏิบัติใดเหมาะสมที่สุด?",
+    options: [
+      "ไม่ต้องทำความสะอาดมือ หากถุงมือไม่ขาด",
+      "ทำความสะอาดมือเฉพาะเมื่อเห็นคราบสกปรก",
+      "ใส่ถุงมือคู่ใหม่เพื่อตรวจผู้ป่วยรายต่อไปได้ทันที",
+      "ทำความสะอาดมือหลังถอดถุงมือ แม้มือดูสะอาด"
+    ],
+    answer: 3,
+    explanation: "ถุงมือไม่ทดแทนการทำความสะอาดมือ และควรทำความสะอาดมือหลังถอดถุงมือ"
+  },
+  {
+    title: "หวัดทั่วไปต้องได้ยาปฏิชีวนะไหม?",
+    category: "พื้นฐาน",
+    text: "ผู้ใหญ่สุขภาพแข็งแรงมีน้ำมูก เจ็บคอเล็กน้อย และไอมา 2 วัน แพทย์ประเมินแล้วว่าเป็นหวัดทั่วไป ไม่มีข้อบ่งชี้การติดเชื้อแบคทีเรียหรือภาวะแทรกซ้อน แนวทางใดเหมาะสมที่สุด?",
+    options: [
+      "รักษาตามอาการ ให้คำแนะนำติดตามอาการ โดยไม่สั่งยาปฏิชีวนะ",
+      "ให้ยาปฏิชีวนะเพื่อป้องกันปอดอักเสบไว้ก่อน",
+      "ให้ยาปฏิชีวนะระยะสั้นแก่ผู้ป่วยทุกราย",
+      "ให้ยาปฏิชีวนะหากผู้ป่วยต้องการ แม้ไม่มีข้อบ่งชี้"
+    ],
+    answer: 0,
+    explanation: "หวัดทั่วไปไม่จำเป็นต้องใช้ยาปฏิชีวนะ การดูแลเน้นบรรเทาอาการและให้คำแนะนำเรื่องอาการที่ควรกลับมารับการประเมิน"
+  },
+  {
+    title: "ยาหลักในภาวะแพ้รุนแรง",
+    category: "สถานการณ์",
+    text: "ผู้ป่วยเกิดลมพิษทั่วตัว หายใจมีเสียงหวีด และความดันโลหิตต่ำอย่างรวดเร็วหลังได้รับยา ทีมกำลังให้การช่วยเหลือฉุกเฉิน หากวินิจฉัยว่าเป็น anaphylaxis ยาและวิธีให้ใดเป็นตัวเลือกแรก?",
+    options: [
+      "ยาแก้แพ้ชนิดรับประทาน",
+      "สเตียรอยด์ทางหลอดเลือดดำเป็นยาหลักเพียงอย่างเดียว",
+      "อะดรีนาลีนฉีดเข้ากล้ามเนื้อบริเวณต้นขาด้านหน้าค่อนไปด้านนอก",
+      "ยาพ่นขยายหลอดลมเพียงอย่างเดียว"
+    ],
+    answer: 2,
+    safety: true,
+    explanation: "อะดรีนาลีนเข้ากล้ามเนื้อเป็นยาตัวแรกสำหรับ anaphylaxis ยาแก้แพ้ สเตียรอยด์ หรือยาพ่นไม่ใช่ยาทดแทน ต้องดำเนินการช่วยเหลือฉุกเฉินด้านอื่นร่วมด้วย"
+  },
+  {
+    title: "ECG ปกติ บอกอะไรได้บ้าง?",
+    category: "สถานการณ์",
+    text: "ผู้ป่วยอายุ 58 ปี แน่นกลางหน้าอกมา 30 นาที ร่วมกับเหงื่อออก คลื่นไส้ และยังมีอาการอยู่ ผลคลื่นไฟฟ้าหัวใจครั้งแรกไม่พบความผิดปกติชัดเจน ข้อใดถูกต้องที่สุด?",
+    options: [
+      "ตัดภาวะหลอดเลือดหัวใจเฉียบพลันออกได้แล้ว",
+      "ยังตัดภาวะหลอดเลือดหัวใจเฉียบพลันออกไม่ได้ ต้องประเมินฉุกเฉินต่อ",
+      "ยืนยันได้ว่าเกิดจากความวิตกกังวล",
+      "ไม่จำเป็นต้องตรวจเพิ่มเติม หากไม่มีประวัติโรคหัวใจ"
+    ],
+    answer: 1,
+    safety: true,
+    explanation: "ECG ปกติครั้งเดียวไม่สามารถตัดภาวะหลอดเลือดหัวใจเฉียบพลันออกได้ ต้องพิจารณาร่วมกับอาการ การติดตาม ECG และการตรวจเพิ่มเติมตามข้อบ่งชี้"
+  },
+  {
+    title: "เลือกอุปกรณ์ป้องกันอย่างไร?",
+    category: "สถานการณ์",
+    text: "แพทย์กำลังทำหัตถการที่คาดว่าเลือดหรือสารคัดหลั่งอาจกระเด็นเข้าตาและใบหน้า หลักการเลือกอุปกรณ์ป้องกันที่เหมาะสมคือข้อใด?",
+    options: [
+      "สวมถุงมืออย่างเดียว เพราะเพียงพอสำหรับหัตถการทุกชนิด",
+      "ไม่ต้องใช้อุปกรณ์ป้องกัน หากผู้ป่วยไม่มีประวัติโรคติดต่อ",
+      "รอผลตรวจหาเชื้อก่อนจึงตัดสินใจใช้อุปกรณ์ป้องกัน",
+      "เลือกอุปกรณ์ให้ครอบคลุมการสัมผัสที่คาดว่าจะเกิด รวมถึงการป้องกันตาและใบหน้า"
+    ],
+    answer: 3,
+    explanation: "เลือกอุปกรณ์ป้องกันตามการสัมผัสที่คาดว่าจะเกิด รวมถึงเยื่อบุตา จมูก และปากเมื่อเสี่ยงต่อการกระเด็น ไม่อาศัยเพียงประวัติโรคติดต่อของผู้ป่วย"
+  },
+  {
+    title: "อธิบายเรื่องยาปฏิชีวนะกับผู้ป่วย",
+    category: "สถานการณ์",
+    text: "ผู้ป่วยหวัดทั่วไปถามว่า “กินยาปฏิชีวนะเผื่อไว้ อย่างน้อยก็คงไม่เสียหายใช่ไหม?” คำตอบใดเหมาะสมที่สุด?",
+    options: [
+      "ใช่ เพราะยาปฏิชีวนะไม่มีความเสี่ยงหากใช้ไม่นาน",
+      "ไม่ควรกิน เพราะยาปฏิชีวนะทำให้ทุกคนเกิดอาการแพ้",
+      "ไม่ได้ช่วยรักษาหวัดทั่วไป และอาจทำให้เกิดผลข้างเคียง รวมถึงเพิ่มปัญหาเชื้อดื้อยา",
+      "กินได้ หากเลือกยาที่มีฤทธิ์ครอบคลุมเชื้อกว้างที่สุด"
+    ],
+    answer: 2,
+    explanation: "ยาปฏิชีวนะที่ไม่จำเป็นไม่ได้ให้ประโยชน์ต่อหวัดทั่วไป แต่มีความเสี่ยง เช่น อาการแพ้ ท้องเสีย การติดเชื้อ C. difficile และการคัดเลือกเชื้อดื้อยา"
+  },
+  {
+    title: "เมื่อการรักษาครั้งแรกยังไม่ได้ผล",
+    category: "เปลี่ยนเงื่อนไข",
+    text: "ผู้ป่วย anaphylaxis ได้รับอะดรีนาลีนเข้ากล้ามเนื้อครั้งแรกอย่างเหมาะสมแล้ว ผ่านไป 5 นาที ยังมีปัญหาการหายใจและความดันต่ำ ขณะทีมฉุกเฉินกำลังดูแล ควรทำอย่างไรกับอะดรีนาลีน?",
+    options: [
+      "ให้ซ้ำทางกล้ามเนื้อตามแนวทาง พร้อมประเมินและช่วยเหลือต่อเนื่อง",
+      "ห้ามให้ซ้ำ เพราะให้ได้เพียงครั้งเดียว",
+      "เปลี่ยนเป็นยาแก้แพ้รับประทานแทนทันที",
+      "รอผลตรวจเลือดยืนยันการแพ้ก่อนให้ยาต่อ"
+    ],
+    answer: 0,
+    safety: true,
+    explanation: "หากยังมีอาการคุกคามชีวิตหลังให้ครั้งแรก สามารถให้อะดรีนาลีนเข้ากล้ามเนื้อซ้ำเมื่อผ่านไป 5 นาทีตามแนวทางที่ใช้ พร้อมช่วยเหลือต่อเนื่องและยกระดับการดูแล แนวทางแต่ละระบบบริการอาจระบุช่วงเวลาแตกต่างกัน"
+  },
+  {
+    title: "ตรวจเพิ่มหรือส่งต่อก่อน?",
+    category: "เปลี่ยนเงื่อนไข",
+    text: "ผู้ป่วยมีอาการแน่นหน้าอกต่อเนื่องและสงสัยภาวะหลอดเลือดหัวใจเฉียบพลัน อยู่ในคลินิกที่ไม่สามารถรักษาภาวะนี้ได้ การทำ ECG ที่คลินิกจะทำให้การส่งต่อฉุกเฉินล่าช้า แนวทางใดเหมาะสมที่สุด?",
+    options: [
+      "รอทำ ECG ให้เสร็จก่อนทุกกรณี",
+      "นัดกลับมาตรวจในวันรุ่งขึ้น",
+      "ให้ผู้ป่วยกลับไปพักและส่งต่อเมื่ออาการหนักขึ้น",
+      "จัดการส่งต่อฉุกเฉินโดยไม่ให้การรอ ECG ทำให้ล่าช้า พร้อมดูแลเบื้องต้นตามศักยภาพ"
+    ],
+    answer: 3,
+    safety: true,
+    explanation: "เมื่อจำเป็นต้องส่งต่อฉุกเฉิน การรอ ECG ไม่ควรทำให้ส่งต่อล่าช้า ควรประสานระบบฉุกเฉินและดูแลเบื้องต้นตามศักยภาพระหว่างดำเนินการ"
+  },
+  {
+    title: "ไม่มั่นใจ แต่ผู้ป่วยอาจกำลังแพ้รุนแรง",
+    category: "รู้ข้อจำกัด",
+    text: "หลังได้รับสารที่สงสัยว่าเป็นตัวกระตุ้น ผู้ป่วยหายใจลำบากและความดันต่ำ แพทย์สงสัย anaphylaxis แต่ยังไม่มั่นใจเต็มที่ แนวทางใดเหมาะสมที่สุด?",
+    options: [
+      "รอจนระบุสารก่อภูมิแพ้ได้แน่นอนก่อนเริ่มรักษา",
+      "ให้การรักษา anaphylaxis ตามข้อบ่งชี้ รวมถึงอะดรีนาลีนเข้ากล้ามเนื้อ และขอความช่วยเหลือทันที",
+      "ให้ยาแก้แพ้อย่างเดียวระหว่างรอให้การวินิจฉัยชัดเจน",
+      "ชะลอการช่วยเหลือจนกว่าจะมีแพทย์เฉพาะทางมาตรวจ"
+    ],
+    answer: 1,
+    safety: true,
+    explanation: "Anaphylaxis เป็นการวินิจฉัยทางคลินิก เมื่อเข้าได้กับภาวะนี้และมีอาการคุกคามชีวิต ไม่ควรรอผลตรวจยืนยันหรือระบุตัวกระตุ้นแน่นอนก่อนรักษาและขอความช่วยเหลือ"
+  }
+];
+
+const levels = [
+  { min: 100, name: "รอบรู้ประจำชุด",
+    description: "ตอบถูกครบทุกข้อในชุดพื้นฐานนี้" },
+  { min: 80, name: "รู้จริงหลายมุม",
+    description: "ทำได้ดีมากในหัวข้อที่ชุดนี้ครอบคลุม" },
+  { min: 60, name: "จับหลักได้ดี",
+    description: "ตอบประเด็นส่วนใหญ่ของชุดนี้ได้ถูกต้อง" },
+  { min: 40, name: "มีพื้นฐานให้ต่อยอด",
+    description: "ตอบได้บางส่วน ลองทบทวนเหตุผลของข้อที่พลาด" },
+  { min: 0, name: "เปิดแผนที่ความรู้",
+    description: "ยังมีหลายประเด็นในชุดนี้ให้สำรวจและทบทวน" }
+];
+
+const $ = id => document.getElementById(id);
+const letters = ["ก", "ข", "ค", "ง"];
+const storageKey = "career-quiz-MED-B01-completed";
+let index = 0;
+let selected = null;
+let answers = [];
+let score = 0;
+let currentLevel = levels[levels.length - 1];
+let completed = 0;
+let attemptLabel = "";
+let accepting = false;
+
+try {
+  const saved = Number(localStorage.getItem(storageKey));
+  completed = Number.isSafeInteger(saved) && saved >= 0 ? saved : 0;
+} catch {
+  // หากปิดพื้นที่เก็บข้อมูล จะนับเฉพาะระหว่างเปิดหน้านี้
+}
+
+function focusOn(id) {
+  $(id).focus();
+}
+
+function startGame() {
+  index = 0;
+  selected = null;
+  answers = [];
+  $("start").hidden = true;
+  $("result").hidden = true;
+  $("review").hidden = true;
+  $("review-btn").textContent = "ดูเฉลยพร้อมเหตุผล";
+  $("review-btn").setAttribute("aria-expanded", "false");
+  $("copy-fallback").hidden = true;
+  $("share-status").textContent = "";
+  $("quiz").hidden = false;
+  renderQuestion();
+}
+
+function renderQuestion() {
+  const q = questions[index];
+  selected = null;
+  accepting = true;
+  $("question-count").textContent = `ข้อ ${index + 1}/${questions.length}`;
+  $("category").textContent = q.category;
+  $("progress").value = index;
+  $("question-text").textContent = q.text;
+  $("options").replaceChildren();
+  $("confirm-btn").disabled = true;
+  $("confirm-btn").textContent =
+    index === questions.length - 1 ? "ยืนยันและดูผลคะแนน" : "ยืนยันคำตอบ";
+
+  q.options.forEach((text, optionIndex) => {
+    const label = document.createElement("label");
+    label.className = "option";
+
+    const radio = document.createElement("input");
+    radio.type = "radio";
+    radio.name = "answer";
+    radio.value = String(optionIndex);
+    radio.required = true;
+
+    const span = document.createElement("span");
+    span.textContent = `${letters[optionIndex]}. ${text}`;
+
+    radio.addEventListener("change", () => {
+      selected = optionIndex;
+      document.querySelectorAll(".option").forEach(el => {
+        el.classList.remove("selected");
+      });
+      label.classList.add("selected");
+      $("confirm-btn").disabled = false;
+    });
+
+    label.append(radio, span);
+    $("options").append(label);
+  });
+
+  focusOn("question-text");
+}
+
+$("answer-form").addEventListener("submit", event => {
+  event.preventDefault();
+  if (!accepting || selected === null) return;
+  accepting = false;
+  $("confirm-btn").disabled = true;
+  answers.push(selected);
+  index += 1;
+
+  if (index < questions.length) {
+    renderQuestion();
+  } else {
+    finishGame();
+  }
+});
+
+function finishGame() {
+  score = questions.reduce((total, q, i) => {
+    return total + (answers[i] === q.answer ? 10 : 0);
+  }, 0);
+  currentLevel = levels.find(level => score >= level.min);
+
+  completed += 1;
+  try {
+    localStorage.setItem(storageKey, String(completed));
+  } catch {
+    // เกมยังทำงานได้แม้ไม่สามารถบันทึกจำนวนครั้ง
+  }
+
+  attemptLabel = `เล่นจบครั้งที่ ${completed} ที่บันทึกได้ในเบราว์เซอร์นี้`;
+  $("score").textContent = `${score}/100`;
+  $("level").textContent = currentLevel.name;
+  $("level-description").textContent = currentLevel.description;
+  $("attempt-info").textContent =
+    `ตอบถูก ${score / 10}/10 ข้อ · ไม่จับเวลา · ${attemptLabel}`;
+
+  const missedSafety = questions
+    .map((q, i) => q.safety && answers[i] !== q.answer ? i + 1 : null)
+    .filter(n => n !== null);
+
+  $("safety-note").hidden = missedSafety.length === 0;
+  $("safety-note").textContent = missedSafety.length
+    ? `หัวข้อที่ควรทบทวนด้านความปลอดภัย: ข้อ ${missedSafety.join(", ")} — ดูคำอธิบายเพิ่มเติมในเฉลย`
+    : "";
+
+  renderReview();
+  $("quiz").hidden = true;
+  $("result").hidden = false;
+  focusOn("result-title");
+}
+
+function addParagraph(parent, text, className = "") {
+  const p = document.createElement("p");
+  p.textContent = text;
+  if (className) p.className = className;
+  parent.append(p);
+}
+
+function renderReview() {
+  $("review-content").replaceChildren();
+  questions.forEach((q, i) => {
+    const item = document.createElement("article");
+    item.className = "review-item";
+    const heading = document.createElement("h3");
+    heading.textContent = `ข้อ ${i + 1} — ${q.title}`;
+    item.append(heading);
+    addParagraph(item, q.text);
+
+    const correct = answers[i] === q.answer;
+    addParagraph(item,
+      correct ? "ตอบถูก · 10 คะแนน" : "ตอบไม่ถูก · 0 คะแนน",
+      correct ? "correct" : "incorrect"
+    );
+    addParagraph(item,
+      `คุณตอบ: ${letters[answers[i]]}. ${q.options[answers[i]]}`
+    );
+    addParagraph(item,
+      `เฉลย: ${letters[q.answer]}. ${q.options[q.answer]}`
+    );
+    addParagraph(item, `เหตุผล: ${q.explanation}`, "muted");
+    $("review-content").append(item);
+  });
+}
+
+function publicGameUrl() {
+  if (!["https:", "http:"].includes(location.protocol)) return "";
+  if (["localhost", "127.0.0.1", "[::1]"].includes(location.hostname)) return "";
+  return location.origin + location.pathname;
+}
+
+function resultText() {
+  return [
+    "อาชีพคุณ รู้จริงป่ะ",
+    "แพทย์ · ชุดพื้นฐาน MED-B01",
+    `ฉันได้ ${score}/100 — ${currentLevel.name}`,
+    `ตอบถูก ${score / 10} จาก 10 ข้อ · โหมดไม่จับเวลา`,
+    attemptLabel,
+    "ผลเกมเฉพาะชุด ไม่ใช่การรับรองอาชีพหรือสมรรถนะวิชาชีพ",
+    "คุณจะได้เท่าไร? ลองเล่นชุดนี้!"
+  ].join("\n");
+}
+
+function fullShareText() {
+  const url = publicGameUrl();
+  return resultText() + (url ? `\n${url}` : "");
+}
+
+async function copyResult() {
+  const text = fullShareText();
+  try {
+    if (!navigator.clipboard || !window.isSecureContext) {
+      throw new Error("Clipboard unavailable");
+    }
+    await navigator.clipboard.writeText(text);
+    $("copy-fallback").hidden = true;
+    $("share-status").textContent = publicGameUrl()
+      ? "คัดลอกผลพร้อมลิงก์เกมแล้ว"
+      : "คัดลอกผลแล้ว — ต้องเผยแพร่เว็บไซต์ก่อนจึงจะมีลิงก์ให้เพื่อนเล่น";
+  } catch {
+    $("copy-fallback").hidden = false;
+    $("share-text").value = text;
+    $("share-text").focus();
+    $("share-text").select();
+    $("share-status").textContent =
+      "เบราว์เซอร์ไม่อนุญาตให้คัดลอกอัตโนมัติ กรุณาคัดลอกข้อความด้านล่าง";
+  }
+}
+
+async function shareResult() {
+  const url = publicGameUrl();
+  if (navigator.share && url) {
+    try {
+      await navigator.share({
+        title: "อาชีพคุณ รู้จริงป่ะ — แพทย์",
+        text: resultText(),
+        url
+      });
+      $("share-status").textContent = "ส่งข้อมูลไปยังเมนูแชร์แล้ว";
+      return;
+    } catch (error) {
+      if (error.name === "AbortError") return;
+    }
+  }
+  await copyResult();
+}
+
+$("start-btn").addEventListener("click", startGame);
+$("restart-btn").addEventListener("click", startGame);
+$("share-btn").addEventListener("click", shareResult);
+$("copy-btn").addEventListener("click", copyResult);
+$("review-btn").addEventListener("click", () => {
+  const opening = $("review").hidden;
+  $("review").hidden = !opening;
+  $("review-btn").setAttribute("aria-expanded", String(opening));
+  $("review-btn").textContent = opening
+    ? "ซ่อนเฉลย" : "ดูเฉลยพร้อมเหตุผล";
+  if (opening) focusOn("review-title");
+});
+</script>
+</body>
+</html>
